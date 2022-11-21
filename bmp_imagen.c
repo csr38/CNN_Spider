@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 
+
 unsigned char *LoadBMP(char *filename, bmpInfoHeader *bInfoHeader, bmpFileHeader *header){
     FILE *f;
 
