@@ -23,11 +23,11 @@ unsigned char *LoadBMP(char *filename, bmpInfoHeader *bInfoHeader, bmpFileHeader
     fread(bInfoHeader, sizeof(bmpInfoHeader), 1, f);
 
 
-    printf ("size: %d\n", header->size);
-    printf ("offs: %d\n", header->offset);
+    //printf ("size: %d\n", header->size);
+    //printf ("offs: %d\n", header->offset);
     /*bInfoHeader->imgsize=2339720;*/
 
-    
+    /*
     printf ("header size:      %d\n", bInfoHeader->headersize);
     printf ("image width:      %d\n", bInfoHeader->width);
     printf ("image height:     %d\n", bInfoHeader->height);
@@ -39,6 +39,7 @@ unsigned char *LoadBMP(char *filename, bmpInfoHeader *bInfoHeader, bmpFileHeader
     printf ("bpmy:             %d\n", bInfoHeader->bpmy);
     printf ("colors:           %d\n", bInfoHeader->colors);
     printf ("important colors: %d\n", bInfoHeader->imxtcolors);
+    */
     imgdata=(unsigned char*)malloc(header->size - header->offset);
 
     fseek(f, header->offset, SEEK_SET);

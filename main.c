@@ -4,6 +4,8 @@
 #include "bmp_imagen.h"
 #include "matriz.h"
 
+#include "convolucion_capa.h"
+
 unsigned int i;
 unsigned int j;
 
@@ -31,6 +33,16 @@ unsigned char *matrizImagen(infoImagen *imagen){
     return img2;
 }
 
+void testConvoluciones(infoImagen *imagen, conv_op *conv){
+    FILE *marrt = fopen("matriz2.bmp", "wb+");
+    for(i=0;i<600;i++){
+      for(j=0;j<600;j++){
+        fputc((float)conv->result_conv[1].matriz[i][j], marrt);
+        
+      }
+    }
+}
+
 int main(){
     bmpInfoHeader info; 
     bmpFileHeader file;
@@ -38,6 +50,8 @@ int main(){
 
     bmpInfoHeader info2; 
     bmpFileHeader file2;
+
+    conv_op conv_1;
 
     unsigned char *img;
     unsigned char *img2;
@@ -50,14 +64,28 @@ int main(){
 
     matriz(&imagen, img, &info, &file, &info2, &file2);
     printf("pase\n");
-    img2 = matrizImagen(&imagen);
     
+    
+    convIniciar(&conv_1, 1, 5, imagen.tam_lado, 3);
+    iniciarMatrizConv(&conv_1, &imagen);
+    vuelco_matriz_temporal(&imagen, &conv_1);
 
-    printf("%x", info2.height);
+    pasada_kernel(&conv_1, &imagen);
 
-    //arreglar error en info y file 2
+    testConvoluciones(&imagen, &conv_1);
+
+    for(i=0;i<600;i++){
+      for(j=0;j<600;j++){
+        imagen.matriz[i][j] = (int)conv_1.result_conv[2].matriz[i][j];
+        
+      }
+    }
+    
+    img2 = matrizImagen(&imagen);
     SaveBMP("res3.bmp", &info2, &file2, img2);
     SaveBMP("res4.bmp", &info, &file, img);
-    printf("listo\n");
+    printf("listo final\n");
+
+
     return 0;
 }
