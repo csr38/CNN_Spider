@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "max_pooling.c": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

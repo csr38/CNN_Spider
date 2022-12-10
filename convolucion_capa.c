@@ -4,6 +4,7 @@ void convIniciar(conv_op *conv, int stride, int cant_kernel, int altura_imagen, 
     conv->tam_lado_kernel = tam_lado_kernel;
     conv->stride = stride;
     conv->cant_kernel = cant_kernel;
+    conv->tam_matriz_result = altura_imagen;
     conv->padding = (-altura_imagen+tam_lado_kernel-stride+(stride*altura_imagen))/2;
     conv->kernel_matriz = (kernel*)malloc(cant_kernel*sizeof(kernel*));
     conv->result_conv = (conv_out*)malloc(cant_kernel*sizeof(conv_out*));
@@ -19,7 +20,7 @@ void convIniciar(conv_op *conv, int stride, int cant_kernel, int altura_imagen, 
     }
 }
 
-void iniciarMatrizConv(conv_op *conv, infoImagen *imagen){
+void iniciarMatrizConv(conv_op *conv){
     
     for(int i = 0;i<conv->cant_kernel;i++){
         conv->kernel_matriz[i].matriz = (float**)malloc(conv->tam_lado_kernel*sizeof(float *));
@@ -47,9 +48,10 @@ void iniciarMatrizConv(conv_op *conv, infoImagen *imagen){
     }
 
     for(int i = 0; i< conv->cant_kernel; i++){
-        conv->result_conv[i].matriz= (float**)malloc(imagen->tam_lado *sizeof(float *));
-        for(int j = 0; j<imagen->tam_lado;j++){
-            conv->result_conv[i].matriz[j] = (float*)malloc(imagen->tam_lado *sizeof(float));
+        
+        conv->result_conv[i].matriz= (float**)malloc(conv->tam_matriz_result *sizeof(float *));
+        for(int j = 0; j<conv->tam_matriz_result;j++){
+            conv->result_conv[i].matriz[j] = (float*)malloc(conv->tam_matriz_result *sizeof(float));
         }
     }
 }
@@ -67,14 +69,14 @@ void vuelco_matriz_temporal(infoImagen *imagen, conv_op *conv){
  
 }
 
-void pasada_kernel(conv_op *conv, infoImagen *imagen){
+void pasada_kernel(conv_op *conv){
     int x=0;
     int resultado = 0;
 
     for(int x = 0; x<conv->cant_kernel;x++){
-        for(int i = 0;i<imagen->tam_lado;i++){
+        for(int i = 0;i<conv->tam_matriz_result;i++){
             
-            for(int j = 0; j<imagen->tam_lado;j++){
+            for(int j = 0; j<conv->tam_matriz_result;j++){
                 resultado=0;
                 for(int h=0; h<conv->tam_lado_kernel;h++){
                     for(int l=0;l<conv->tam_lado_kernel;l++){

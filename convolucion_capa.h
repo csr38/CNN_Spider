@@ -23,7 +23,6 @@ typedef struct bias
 typedef struct conv_out
 {
     float **matriz;
-    int tam_matiz;
 
 }conv_out;
 
@@ -47,12 +46,13 @@ typedef struct conv_op
     
     bias *bias_matriz;
     conv_out *result_conv;
+    int tam_matriz_result;
 }conv_op;
 
 void convIniciar(conv_op *conv, int stride, int cant_kernel, int altura_imagen, int tam_lado_kernel);
-void iniciarMatrizConv(conv_op *conv, infoImagen *imagen);
+void iniciarMatrizConv(conv_op *conv);
 void vuelco_matriz_temporal(infoImagen *imagen, conv_op *conv);
-void pasada_kernel(conv_op *conv, infoImagen *imagen);
+void pasada_kernel(conv_op *conv);
 
 #include "convolucion_capa.c"
 #endif

@@ -13,7 +13,7 @@ typedef struct pool_op
 {
     int dim_result;
     int cant_pool;
-    int tam_matriz_interior;
+    int tam_matriz_pool;
     float *result_pool;
 }pool_op;
 

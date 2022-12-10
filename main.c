@@ -67,10 +67,10 @@ int main(){
     
     
     convIniciar(&conv_1, 1, 5, imagen.tam_lado, 3);
-    iniciarMatrizConv(&conv_1, &imagen);
+    iniciarMatrizConv(&conv_1);
     vuelco_matriz_temporal(&imagen, &conv_1);
 
-    pasada_kernel(&conv_1, &imagen);
+    pasada_kernel(&conv_1);
 
     testConvoluciones(&imagen, &conv_1);
 
