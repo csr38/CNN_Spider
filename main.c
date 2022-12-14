@@ -6,6 +6,8 @@
 
 #include "convolucion_capa.h"
 
+#include "max_pooling.h"
+
 unsigned int i;
 unsigned int j;
 
@@ -53,6 +55,8 @@ int main(){
 
     conv_op conv_1;
 
+    pool_op pool_1;
+
     unsigned char *img;
     unsigned char *img2;
 
@@ -73,6 +77,10 @@ int main(){
     pasada_kernel(&conv_1);
 
     testConvoluciones(&imagen, &conv_1);
+
+    poolIniciar(&pool_1, &conv_1, 2);
+    creacionMatrizPooling(&pool_1, &conv_1);
+    operacionesMaxPooling(&pool_1, &conv_1);
 
     for(i=0;i<600;i++){
       for(j=0;j<600;j++){

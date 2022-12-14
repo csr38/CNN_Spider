@@ -6,9 +6,9 @@ void convIniciar(conv_op *conv, int stride, int cant_kernel, int altura_imagen, 
     conv->cant_kernel = cant_kernel;
     conv->tam_matriz_result = altura_imagen;
     conv->padding = (-altura_imagen+tam_lado_kernel-stride+(stride*altura_imagen))/2;
-    conv->kernel_matriz = (kernel*)malloc(cant_kernel*sizeof(kernel*));
-    conv->result_conv = (conv_out*)malloc(cant_kernel*sizeof(conv_out*));
-    conv->bias_matriz = (bias*)malloc(cant_kernel*sizeof(bias*));
+    conv->kernel_matriz = (kernel*)malloc(cant_kernel*sizeof(kernel));
+    conv->result_conv = (conv_out*)malloc(cant_kernel*sizeof(conv_out));
+    conv->bias_matriz = (bias*)malloc(cant_kernel*sizeof(bias));
     conv->matriz_temp_padding = (float**)malloc((altura_imagen+(conv->padding*2))*sizeof(float *));
 
     conv->tam_matriz_temp = (altura_imagen+(conv->padding*2));

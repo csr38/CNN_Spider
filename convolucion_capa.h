@@ -29,10 +29,11 @@ typedef struct conv_out
 typedef struct conv_op
 {
     //zero-padding es la cantida de cero en las horrilas
-    //para evitar modificar el mataño de la matriz
-    int padding;
     //Cuantos espacio va corriendo la matriz
     int stride;
+    //para evitar modificar el mataño de la matriz
+    int padding;
+    
     //Cantidad de convoluciones (dimesiones convoluciones)
     int cant_kernel;
     //Kernel de convoluciones
