@@ -84,7 +84,7 @@ int main(){
 
     for(i=0;i<600;i++){
       for(j=0;j<600;j++){
-        imagen.matriz[i][j] = (int)conv_1.result_conv[2].matriz[i][j];
+        imagen.matriz[i][j] = (int)conv_1.result_conv[1].matriz[i][j];
         
       }
     }

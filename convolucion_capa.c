@@ -81,7 +81,7 @@ void pasada_kernel(conv_op *conv){
                 for(int h=0; h<conv->tam_lado_kernel;h++){
                     for(int l=0;l<conv->tam_lado_kernel;l++){
                         if((i+l)<conv->tam_matriz_temp && (j+h)<conv->tam_matriz_temp){
-                            resultado+=conv->matriz_temp_padding[i+l][j+h]*conv->kernel_matriz[x].matriz[h][l]+conv->bias_matriz[x].matriz[h][l];
+                            resultado+=conv->matriz_temp_padding[i+l][j+h]*conv->kernel_matriz[1].matriz[h][l]+conv->bias_matriz[x].matriz[h][l];
                         }   
                     }
                 }
