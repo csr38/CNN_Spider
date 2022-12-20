@@ -1,6 +1,8 @@
 #ifndef _MATRIZ
 #define _MATRIZ
 
+#include "bmp_imagen.h"
+
 typedef struct infoImagen{
   unsigned char *header; //Contiene la informacion de la imagen, para cuando lo quiera reconstituir
   unsigned int **matriz;//Contiene la imgen en forma de matriz

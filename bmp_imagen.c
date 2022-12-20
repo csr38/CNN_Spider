@@ -40,7 +40,7 @@ unsigned char *LoadBMP(char *filename, bmpInfoHeader *bInfoHeader, bmpFileHeader
     printf ("colors:           %d\n", bInfoHeader->colors);
     printf ("important colors: %d\n", bInfoHeader->imxtcolors);
     */
-    imgdata=(unsigned char*)malloc(header->size - header->offset);
+    imgdata=(unsigned char*)calloc((header->size - header->offset), sizeof(unsigned char));
 
     fseek(f, header->offset, SEEK_SET);
     //fseek(f, 54, SEEK_SET);

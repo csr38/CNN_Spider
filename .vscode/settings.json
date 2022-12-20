@@ -1,7 +1,10 @@
 {
     "files.associations": {
-        "max_pooling.c": "cpp",
-        "stdio.h": "c"
+        "max_pooling.c": "c",
+        "stdio.h": "c",
+        "flatten_capa.h": "c",
+        "max_pooling.h": "c",
+        "convolucion_capa.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

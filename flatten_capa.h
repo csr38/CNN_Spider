@@ -1,19 +1,19 @@
 #ifndef _FLATTEN_CAPA
 #define _FLATTEN_CAPA
 
-
+#include "max_pooling.h"
 
 
 
 typedef struct flatten_op
 {
-    int cant_flatten;
-    int dim_flatten;
-    float **matriz_flatten;
+
+    unsigned int dim_flatten;
+    float *matriz_flatten;
     
 }flatten_op;
 
-void iniciar_flatten(pool_op *pool, flatten_op *flat);
+void iniciarFlatten(pool_op *pool, flatten_op *flat);
 
-#include "flaten_capa.c"
+#include "flatten_capa.c"
 #endif

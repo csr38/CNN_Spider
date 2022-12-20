@@ -6,32 +6,25 @@ void convIniciar(conv_op *conv, int stride, int cant_kernel, int altura_imagen, 
     conv->cant_kernel = cant_kernel;
     conv->tam_matriz_result = altura_imagen;
     conv->padding = (-altura_imagen+tam_lado_kernel-stride+(stride*altura_imagen))/2;
-    conv->kernel_matriz = (kernel*)malloc(cant_kernel*sizeof(kernel));
-    conv->result_conv = (conv_out*)malloc(cant_kernel*sizeof(conv_out));
-    conv->bias_matriz = (bias*)malloc(cant_kernel*sizeof(bias));
-    conv->matriz_temp_padding = (float**)malloc((altura_imagen+(conv->padding*2))*sizeof(float *));
+    conv->kernel_matriz = (kernel*)calloc(cant_kernel,sizeof(kernel));
+    conv->result_conv = (conv_out*)calloc(cant_kernel,sizeof(conv_out));
+    conv->bias_matriz = (bias*)calloc(cant_kernel,sizeof(bias));
+    conv->matriz_temp_padding = (float**)calloc((altura_imagen+(conv->padding*2)),sizeof(float *));
 
     conv->tam_matriz_temp = (altura_imagen+(conv->padding*2));
     for(int i=0; i<altura_imagen+(conv->padding*2);i++){
-        conv->matriz_temp_padding[i]= (float*)malloc((altura_imagen+(conv->padding*2))*sizeof(float));
-        for(int j = 0; j<altura_imagen+(conv->padding*2); j++){
-            conv->matriz_temp_padding[i][j]=0;
-        }
+        conv->matriz_temp_padding[i]= (float*)calloc((altura_imagen+(conv->padding*2)),sizeof(float));
     }
 }
 
 void iniciarMatrizConv(conv_op *conv){
     
     for(int i = 0;i<conv->cant_kernel;i++){
-        conv->kernel_matriz[i].matriz = (float**)malloc(conv->tam_lado_kernel*sizeof(float *));
-        conv->bias_matriz[i].matriz = (float**)malloc(conv->tam_lado_kernel*sizeof(float *));
+        conv->kernel_matriz[i].matriz = (float**)calloc(conv->tam_lado_kernel,sizeof(float *));
+        conv->bias_matriz[i].matriz = (float**)calloc(conv->tam_lado_kernel,sizeof(float *));
         for(int j=0; j<conv->tam_lado_kernel;j++){
-            conv->kernel_matriz[i].matriz[j] = (float*)malloc(conv->tam_lado_kernel*sizeof(float));
-            conv->bias_matriz[i].matriz[j] = (float*)malloc(conv->tam_lado_kernel*sizeof(float));
-            for(int h=0; h<conv->tam_lado_kernel;h++){
-                conv->kernel_matriz[i].matriz[j][h]=0;
-                conv->bias_matriz[i].matriz[j][h]=0;
-            }
+            conv->kernel_matriz[i].matriz[j] = (float*)calloc(conv->tam_lado_kernel,sizeof(float));
+            conv->bias_matriz[i].matriz[j] = (float*)calloc(conv->tam_lado_kernel,sizeof(float));
         }
 
     }
@@ -49,9 +42,9 @@ void iniciarMatrizConv(conv_op *conv){
 
     for(int i = 0; i< conv->cant_kernel; i++){
         
-        conv->result_conv[i].matriz= (float**)malloc(conv->tam_matriz_result *sizeof(float *));
+        conv->result_conv[i].matriz= (float**)calloc(conv->tam_matriz_result, sizeof(float *));
         for(int j = 0; j<conv->tam_matriz_result;j++){
-            conv->result_conv[i].matriz[j] = (float*)malloc(conv->tam_matriz_result *sizeof(float));
+            conv->result_conv[i].matriz[j] = (float*)calloc(conv->tam_matriz_result, sizeof(float));
         }
     }
 }

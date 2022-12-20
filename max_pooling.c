@@ -7,14 +7,14 @@ void poolIniciar(pool_op *maxPooling, conv_op *conv, int tam_pool){
     maxPooling->dim_result = (int)(conv->tam_matriz_result/tam_pool);
 
     
-    maxPooling->result_pool = (matriz_pool*)malloc(conv->cant_kernel *sizeof(matriz_pool));
+    maxPooling->result_pool = (matriz_pool*)calloc(conv->cant_kernel ,sizeof(matriz_pool));
 }
 
 void creacionMatrizPooling(pool_op *maxPooling, conv_op *conv){
     for(int x=0; x < conv->cant_kernel; x++){
-        maxPooling->result_pool[x].matriz = (float**)malloc(maxPooling->dim_result *sizeof(float*));
+        maxPooling->result_pool[x].matriz = (float**)calloc(maxPooling->dim_result ,sizeof(float*));
         for(int i =0;i<maxPooling->dim_result;i++){
-            maxPooling->result_pool[x].matriz[i] = (float*)malloc(maxPooling->dim_result *sizeof(float));
+            maxPooling->result_pool[x].matriz[i] = (float*)calloc(maxPooling->dim_result ,sizeof(float));
         }
     }
 }
