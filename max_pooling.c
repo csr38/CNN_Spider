@@ -38,6 +38,7 @@ void operacionesMaxPooling(pool_op *maxPooling, conv_op *conv){
                     }
                 }
                 maxPooling->result_pool[x].matriz[i][j]=valor_mayor;
+             
             }
         }
     }

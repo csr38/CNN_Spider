@@ -12,6 +12,8 @@
 
 #include "rnm_capa.h"
 
+#include "softmax_capa.h"
+
 unsigned int i;
 unsigned int j;
 
@@ -63,6 +65,8 @@ int main(){
 
     rnm_op rnm_1;
 
+    softmax_op softmax_1;
+
     unsigned char *img;
     unsigned char *img2;
 
@@ -95,6 +99,8 @@ int main(){
     
     capaEntrada(&flat_1, &rnm_1);
     
+    iniciarSoftmax(&rnm_1, &softmax_1);
+
     //img2 = matrizImagen(&imagen);
     //SaveBMP("res3.bmp", &info2, &file2, img2);
     SaveBMP("res4.bmp", &info, &file, img);

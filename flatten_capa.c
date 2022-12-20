@@ -16,6 +16,7 @@ void iniciarFlatten(pool_op *pool, flatten_op *flat){
             for(x=0; x<pool->dim_result; x++){
                 flat->matriz_flatten[posicion] = pool->result_pool[i].matriz[j][x];
                 posicion++;
+
             }
         }
     }
