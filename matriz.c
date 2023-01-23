@@ -13,10 +13,10 @@ void **matriz(infoImagen *imagen, unsigned char *img, bmpInfoHeader *bInfoHeader
   }
 
 
-    imagen->matriz = (unsigned int**)calloc(imagen->tam_lado,sizeof(int *));
+    imagen->matriz = (double**)calloc(imagen->tam_lado,sizeof(double *));
     
     for(i = 0; i < imagen->tam_lado; i++){
-      imagen->matriz[i]=(unsigned int *)calloc((imagen->tam_lado),sizeof(int));
+      imagen->matriz[i]=(double *)calloc((imagen->tam_lado),sizeof(double));
     }
 
   file2->size=imagen->tam_lado*imagen->tam_lado*3+bFileHeader->offset;
@@ -50,7 +50,7 @@ void **matriz(infoImagen *imagen, unsigned char *img, bmpInfoHeader *bInfoHeader
 
     for(i=0; i<bInfoHeader->height;i++){
       for(j=0; j< bInfoHeader->width;j++){
-        imagen->matriz[i+inicio_1][j+inicio_2] = ((int)img[suma*3]*100)/255;
+        imagen->matriz[i+inicio_1][j+inicio_2] = ((double)img[suma*3])/255;
         suma++;
       }
     }
@@ -58,7 +58,7 @@ void **matriz(infoImagen *imagen, unsigned char *img, bmpInfoHeader *bInfoHeader
 
     for(i=0;i<600;i++){
       for(j=0;j<600;j++){
-        fputc((int)imagen->matriz[i][j], marrt);
+        fputc((float)imagen->matriz[i][j], marrt);
         
       }
     }

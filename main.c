@@ -103,9 +103,9 @@ int main(){
 
     //img2 = matrizImagen(&imagen);
     //SaveBMP("res3.bmp", &info2, &file2, img2);
-    SaveBMP("res4.bmp", &info, &file, img);
-    printf("listo final\n");
+    //SaveBMP("res4.bmp", &info, &file, img);
+    //printf("listo final\n");
 
-
+    printf("\n");
     return 0;
 }

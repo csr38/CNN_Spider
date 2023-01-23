@@ -1,6 +1,7 @@
 #ifndef _RNM_CAPA
 #define _RNM_CAPA
 
+#include "flatten_capa.h"
 
 
 

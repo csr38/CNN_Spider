@@ -39,7 +39,7 @@ void capaEntrada(flatten_op *flat, rnm_op *rnm){
     unsigned int filas2 = 0;
     unsigned int columnas1 = 0;
     unsigned int columnas2 = 0;
-    float suma = 0;
+    float suma = 0.0;
 
     filas1 = rnm->fila_rnm;//3
     columnas1 = rnm->col_rnm;//99
@@ -51,12 +51,16 @@ void capaEntrada(flatten_op *flat, rnm_op *rnm){
                 for (x = 0; x < columnas1; x++) {
                     suma += rnm->matriz_w[i][x] * flat->matriz_flatten[x]+rnm->bias[x];//se acumula en suma
                 }
-
+       
                 //ReLu
                 if(suma < 0){
                     suma = 0;
                 }
-                rnm->matriz_result[i] = suma/10000000;
+                rnm->matriz_result[i] = suma;
+
+                
+
+                
 
                 
 

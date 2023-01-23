@@ -5,7 +5,7 @@
 
 typedef struct infoImagen{
   unsigned char *header; //Contiene la informacion de la imagen, para cuando lo quiera reconstituir
-  unsigned int **matriz;//Contiene la imgen en forma de matriz
+  double **matriz;//Contiene la imgen en forma de matriz
   unsigned short int tam_lado; //al importar una imagen cuadrada solo tomo uno de los valores
   unsigned short int dimensiones; //Contiene la multiplicacion de las matrices con las filas
 }infoImagen;

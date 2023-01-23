@@ -6,7 +6,8 @@
         "max_pooling.h": "c",
         "convolucion_capa.h": "c",
         "softmax_capa.h": "c",
-        "rnm_capa.h": "c"
+        "rnm_capa.h": "c",
+        "bmp_imagen.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

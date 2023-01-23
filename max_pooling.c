@@ -20,7 +20,6 @@ void creacionMatrizPooling(pool_op *maxPooling, conv_op *conv){
 }
 
 void operacionesMaxPooling(pool_op *maxPooling, conv_op *conv){
-    printf("%d\n",maxPooling->tam_matriz_pool);
     float valor_mayor = 0;
     for(int x=0; x < conv->cant_kernel; x++){
         for(int i =0;i<maxPooling->dim_result;i++){
@@ -29,15 +28,18 @@ void operacionesMaxPooling(pool_op *maxPooling, conv_op *conv){
                 for(int h =0;h<maxPooling->tam_matriz_pool;h++){
                     for(int l =0;l<maxPooling->tam_matriz_pool;l++){
                         if((i+h)<= conv->tam_matriz_result &&(j+l)<=conv->tam_matriz_result){
-                          
+                            
                             if(valor_mayor < conv->result_conv[x].matriz[(i*maxPooling->tam_matriz_pool)+h][(j*maxPooling->tam_matriz_pool)+l]){
                                 valor_mayor = conv->result_conv[x].matriz[(i*maxPooling->tam_matriz_pool)+h][(j*maxPooling->tam_matriz_pool)+l];
-                             
+                                
                             }
                         }
                     }
                 }
                 maxPooling->result_pool[x].matriz[i][j]=valor_mayor;
+
+                
+
              
             }
         }

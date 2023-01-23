@@ -29,7 +29,16 @@ void iniciarMatrizConv(conv_op *conv){
 
     }
 
+    for(int x=0;x<conv->cant_kernel;x++){
+        for(i=0;i<conv->tam_lado_kernel;i++){
+            for(j=0;j<conv->tam_lado_kernel;j++){
+                conv->kernel_matriz[x].matriz[i][j]=1;
+            }
+        }
+    }
+
     //Test
+    /*
     for(int i=0;i<conv->tam_lado_kernel;i++){
         for(int j=0; j<conv->tam_lado_kernel;j++){
             
@@ -39,7 +48,8 @@ void iniciarMatrizConv(conv_op *conv){
             }
         }
     }
-
+    
+*/
     for(int i = 0; i< conv->cant_kernel; i++){
         
         conv->result_conv[i].matriz= (float**)calloc(conv->tam_matriz_result, sizeof(float *));
@@ -64,7 +74,7 @@ void vuelco_matriz_temporal(infoImagen *imagen, conv_op *conv){
 
 void pasada_kernel(conv_op *conv){
     int x=0;
-    int resultado = 0;
+    float resultado = 0.0;
 
     for(int x = 0; x<conv->cant_kernel;x++){
         for(int i = 0;i<conv->tam_matriz_result;i++){
@@ -74,13 +84,14 @@ void pasada_kernel(conv_op *conv){
                 for(int h=0; h<conv->tam_lado_kernel;h++){
                     for(int l=0;l<conv->tam_lado_kernel;l++){
                         if((i+l)<conv->tam_matriz_temp && (j+h)<conv->tam_matriz_temp){
-                            resultado+=conv->matriz_temp_padding[i+l][j+h]*conv->kernel_matriz[1].matriz[h][l]+conv->bias_matriz[x].matriz[h][l];
+                            resultado+=conv->matriz_temp_padding[i+l][j+h]*conv->kernel_matriz[x].matriz[h][l]+conv->bias_matriz[x].matriz[h][l];
                         }   
                     }
                 }
 
                 //Convolucion y ReLu
                 if(resultado >=0){
+
                     conv->result_conv[x].matriz[i][j]=resultado;
                 }else{
                     conv->result_conv[x].matriz[i][j]=0;
